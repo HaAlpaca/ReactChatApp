@@ -1,7 +1,8 @@
-// import React from 'react'
+import React from 'react'
 import {Button,Avatar, Typography} from 'antd'
 import styled from 'styled-components'
 import { auth} from '../../firebase/config'
+import { AuthContext } from '../../Context/AuthProvider'
 
 
 const WrappedStyled = styled.div`
@@ -11,36 +12,19 @@ const WrappedStyled = styled.div`
     border-bottom: 1px solid rgb(230,230,230);
     .username {
         color: white;
-        margin-left: 5px
+        margin-left: 5px;
     }
 
 `
 export default function UserInfo() {
-    // useEffect(() => {
-    //     const fetchUsers = async () => {
-    //         try {
-    //             const querySnapshot = await getDocs(collection(db, "users"));
-    //             const usersList = [];
-    //             querySnapshot.forEach((doc) => {
-    //                 usersList.push({ id: doc.id, ...doc.data() });
-    //             });
-                
-    //             console.log(usersList);
-    //         } catch (error) {
-    //             console.error("Error fetching user documents: ", error);
-    //         }
-    //     };
-
-    //     fetchUsers();
-    // }, []);
-
     
 
+    const {user: {displayName,photoURL}} = React.useContext(AuthContext)
   return (
     <WrappedStyled>
         <div>
-            <Avatar >A</Avatar>
-            <Typography.Text className="username">ABC</Typography.Text>
+            <Avatar src={photoURL}>{photoURL ? "" : displayName?.charAt(0).toUpperCase()}</Avatar>
+            <Typography.Text className="username">{displayName}</Typography.Text>
         </div>
         <Button ghost onClick={() => auth.signOut()}>
             Đăng xuất

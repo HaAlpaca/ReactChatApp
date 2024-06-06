@@ -9,6 +9,7 @@ export default function AuthProvider({children}) {
     const [user,setUserInfo] = useState({});
     const [isLoading,setIsLoading] = useState(true)
     
+    
     let navigateTo = useNavigate();
 
     React.useEffect(() => {

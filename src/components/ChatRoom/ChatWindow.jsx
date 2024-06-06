@@ -4,6 +4,8 @@ import { UserAddOutlined } from "@ant-design/icons"
 import { Avatar, Button, Form, Input, Tooltip } from "antd"
 import styled from "styled-components"
 import Message from "./Message"
+import { useContext } from "react"
+import AppContext from "antd/es/app/context"
 
 const WrappedStyled = styled.div`
   height: 100vh;
@@ -69,6 +71,8 @@ const FormStyled = styled(Form)`
 
 
 export default function ChatWindow() {
+  const {rooms,selectedRoomId} = useContext(AppContext)
+  console.log(rooms,selectedRoomId);
   return (
     <WrappedStyled>
       <HeaderStyled>

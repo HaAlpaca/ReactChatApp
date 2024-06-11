@@ -1,7 +1,7 @@
 import { Row, Col, Button, Typography } from "antd";
 import { auth} from "../../firebase/config";
 import { signInWithPopup, FacebookAuthProvider,getAdditionalUserInfo } from "firebase/auth";
-import { addDocument } from "../../firebase/services";
+import { addDocument, generateKeywords } from "../../firebase/services";
 
 const { Title } = Typography;
 
@@ -17,8 +17,9 @@ export default function Login() {
                         displayName: user.displayName,
                         email: user.email,
                         photoURL: user.photoURL,
-                        uid: user.displayName,
-                        providerId: details.providerId
+                        uid: user.uid,
+                        providerId: details.providerId,
+                        keywords: generateKeywords(user.displayName)
                     })
                 }
             } 
